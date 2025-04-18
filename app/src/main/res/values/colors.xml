@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Custom colors -->
+    <color name="category_highlight_orange">#FF9800</color> <!-- Orange color for selection -->
+    <color name="category_default_background">#EEEEEE</color> <!-- Light grey for non-selected -->
+    <color name="toolbar_background">#00579B</color> <!-- Dark blue for the top bar -->
+    <color name="title_bar_background">#0077C2</color> <!-- Lighter blue for the title -->
+</resources>

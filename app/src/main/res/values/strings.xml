@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ShoppingAppDemo</string> <!-- Change as needed -->
+    <string name="title_text">南科烧烤</string> <!-- Title -->
+
+    <!-- Category Names -->
+    <string name="category_main_course">主食</string>
+    <string name="category_stir_fry">炒菜</string>
+    <string name="category_malatang">麻辣烫</string>
+    <string name="category_halal">清真菜</string>
+</resources>
