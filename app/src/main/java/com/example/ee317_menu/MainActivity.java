@@ -1,12 +1,12 @@
-package com.yourcompany.shoppingappdemo; // Replace with your package name
+package com.example.ee317_menu;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat; // Import ContextCompat
-import androidx.recyclerview.widget.DividerItemDecoration; // Import DividerItemDecoration
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.graphics.drawable.Drawable; // Import Drawable
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import java.util.ArrayList;
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements CategoryAdapter.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main.xml);
+        setContentView(R.layout.activity_main);
 
         // 1. Prepare Data
         prepareFoodData();

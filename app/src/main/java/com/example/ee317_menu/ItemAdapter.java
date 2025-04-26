@@ -1,4 +1,4 @@
-package com.yourcompany.shoppingappdemo; // Replace with your package name
+package com.example.ee317_menu;
 
 import android.content.Context;
 import android.view.LayoutInflater;
