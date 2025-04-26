@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Android Studio Assignment2 Report</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="android-studio-assignment2-report">Android Studio Assignment2 Report</h1>
+<h2 id="1-实验目的">1. 实验目的</h2>
+<p>本次实验旨在利用 Android Studio 和 Java 语言，设计并实现一个模拟购物或餐厅菜单应用的双栏用户界面。核心目标是使用 <code>RecyclerView</code> 来分别展示左侧的分类列表和右侧对应的项目列表，同时满足特定的视觉样式、交互逻辑以及后续提出的修改要求（如分类颜色反转、项目分隔线等）。</p>
+<h2 id="2-实验要求">2. 实验要求</h2>
+<p>根据初始要求及后续修改，应用程序需满足以下具体规范：</p>
+<ul>
+<li><strong>基本布局:</strong> 实现左右并排的双栏布局，左侧为分类列表 (<code>RecyclerView</code>)，右侧为项目列表 (<code>RecyclerView</code>)。</li>
+<li><strong>数据内容:</strong>
+<ul>
+<li>分类: 包含 “主食”、“炒菜”、“麻辣烫”、“清真菜”。</li>
+<li>项目: 每个分类下最初要求精确显示 10 个项目（例如，“主食1” 到 “主食10”）。后修改为可通过常量 (<code>ITEMS_PER_CATEGORY</code>) 配置项目数量。</li>
+</ul>
+</li>
+<li><strong>视觉样式与交互 (最终版):</strong>
+<ul>
+<li><strong>默认状态:</strong> 应用启动时，默认选中第一个分类（“主食”）。</li>
+<li><strong>选中分类:</strong> 左侧被选中的分类项，其背景显示为<strong>白色</strong>，文字显示为<strong>黑色</strong>。</li>
+<li><strong>未选中分类:</strong> 左侧所有未被选中的分类项，其背景显示为<strong>橙色</strong>，文字显示为<strong>白色</strong>。</li>
+<li><strong>项目列表:</strong> 右侧的项目列表区域，其背景始终保持<strong>白色</strong>。</li>
+<li><strong>分隔线:</strong> 右侧项目列表中的每个项目之间，需要显示水平分隔线。</li>
+</ul>
+</li>
+<li><strong>项目高度:</strong> 右侧项目列表中的单个项目应具有增加的垂直内边距（Padding）或高度，使得即使项目数量不多，列表整体看起来也更长（通过修改 <code>list_item_food.xml</code> 实现）。</li>
+<li><strong>报告:</strong> 提供源代码和一份记录实现过程的报告，其中包含最终应用在不同分类选中状态下的截图。</li>
+</ul>
+<h2 id="3-系统设计与架构">3. 系统设计与架构</h2>
+<p>本应用遵循标准的 Android 结构：</p>
+<ul>
+<li><strong><code>MainActivity.java</code>:</strong> 作为应用的主 Activity 和控制器。负责初始化界面组件、准备数据（使用 <code>LinkedHashMap</code> 映射分类名到项目字符串列表）、设置 <code>RecyclerView</code> 的适配器（Adapter）、通过 <code>OnCategoryClickListener</code> 接口处理分类选择与项目列表更新之间的交互，并为项目列表配置 <code>DividerItemDecoration</code>。</li>
+<li><strong><code>CategoryAdapter.java</code>:</strong> 管理左侧分类 <code>RecyclerView</code> 的数据和视图。它持有分类名称列表，处理视图的创建 (<code>onCreateViewHolder</code>) 和数据绑定 (<code>onBindViewHolder</code>)，管理选中项的位置 (<code>selectedPosition</code>)，根据选中状态应用正确的背景色和文字颜色，并通过 <code>OnCategoryClickListener</code> 接口将点击事件通知给 <code>MainActivity</code>。</li>
+<li><strong><code>ItemAdapter.java</code>:</strong> 管理右侧项目 <code>RecyclerView</code> 的数据和视图。它持有<em>当前选中</em>分类对应的项目列表，处理视图创建和数据绑定，并提供 <code>updateData</code> 方法供 <code>MainActivity</code> 在分类切换时刷新列表内容。</li>
+<li><strong>布局文件 (XML):</strong>
+<ul>
+<li><code>activity_main.xml</code>: 定义了应用的整体结构（使用 <code>LinearLayout</code>），包含模拟的 Toolbar/标题区域，以及容纳两个 <code>RecyclerView</code> 的水平布局。</li>
+<li><code>list_item_category.xml</code>: 定义单个分类项的布局（一个 <code>TextView</code>）。</li>
+<li><code>list_item_food.xml</code>: 定义单个菜单项的布局（一个具有增加内边距/高度的 <code>TextView</code>）。</li>
+</ul>
+</li>
+<li><strong>资源文件:</strong>
+<ul>
+<li><code>colors.xml</code>: 定义应用中使用的颜色值（如 <code>category_highlight_orange</code>、<code>white</code>、<code>black</code> 等）。</li>
+<li><code>strings.xml</code>: 定义字符串资源（如分类名称、应用标题等）。</li>
+<li><code>drawable/divider_line.xml</code>: 定义项目列表分隔线的视觉外观（颜色、粗细）。</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-实现细节">4. 实现细节</h2>
+<h3 id="41-主布局-activity_mainxml">4.1. 主布局 (<code>activity_main.xml</code>)</h3>
+<p>使用水平 <code>LinearLayout</code> 排列两个 <code>RecyclerView</code>。左侧 (<code>recyclerViewCategories</code>) 具有固定宽度，右侧 (<code>recyclerViewItems</code>) 使用 <code>layout_weight=&quot;1&quot;</code> 填充剩余空间。</p>
+<pre><code class="language-xml"><span class="hljs-comment">&lt;!-- 在主垂直 LinearLayout 内部 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">LinearLayout</span>
+    <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;match_parent&quot;</span>
+    <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;match_parent&quot;</span>
+    <span class="hljs-attr">android:orientation</span>=<span class="hljs-string">&quot;horizontal&quot;</span>&gt;</span>
+
+    <span class="hljs-comment">&lt;!-- 左侧面板: 分类 RecyclerView --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">androidx.recyclerview.widget.RecyclerView</span>
+        <span class="hljs-attr">android:id</span>=<span class="hljs-string">&quot;@+id/recyclerViewCategories&quot;</span>
+        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;100dp&quot;</span>
+        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;match_parent&quot;</span>
+        <span class="hljs-attr">android:background</span>=<span class="hljs-string">&quot;@color/category_default_background&quot;</span> &lt;!<span class="hljs-attr">--</span> 初始背景，会被<span class="hljs-attr">Adapter</span>覆盖 <span class="hljs-attr">--</span>&gt;</span>
+        app:layoutManager=&quot;androidx.recyclerview.widget.LinearLayoutManager&quot;
+        tools:listitem=&quot;@layout/list_item_category&quot;/&gt;
+
+    <span class="hljs-comment">&lt;!-- 右侧面板: 项目 RecyclerView --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">androidx.recyclerview.widget.RecyclerView</span>
+        <span class="hljs-attr">android:id</span>=<span class="hljs-string">&quot;@+id/recyclerViewItems&quot;</span>
+        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;0dp&quot;</span>
+        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;match_parent&quot;</span>
+        <span class="hljs-attr">android:layout_weight</span>=<span class="hljs-string">&quot;1&quot;</span>
+        <span class="hljs-attr">android:background</span>=<span class="hljs-string">&quot;@color/white&quot;</span> &lt;!<span class="hljs-attr">--</span> 确保项目列表背景始终为白色 <span class="hljs-attr">--</span>&gt;</span>
+        app:layoutManager=&quot;androidx.recyclerview.widget.LinearLayoutManager&quot;
+        tools:listitem=&quot;@layout/list_item_food&quot;/&gt;
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">LinearLayout</span>&gt;</span>
+</code></pre>
+<h3 id="42-数据准备-mainactivityjava">4.2. 数据准备 (<code>MainActivity.java</code>)</h3>
+<p>使用辅助方法动态生成数据。</p>
+<pre><code class="language-java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">ITEMS_PER_CATEGORY</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>; <span class="hljs-comment">// 或 30 等</span>
+
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">prepareFoodData</span><span class="hljs-params">()</span> {
+    foodData = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedHashMap</span>&lt;&gt;();
+    <span class="hljs-type">String</span> <span class="hljs-variable">mainCourse</span> <span class="hljs-operator">=</span> getString(R.string.category_main_course);
+    <span class="hljs-comment">// ... 获取其他分类字符串 ...</span>
+
+    foodData.put(mainCourse, generateItems(mainCourse, ITEMS_PER_CATEGORY));
+    <span class="hljs-comment">// ... 添加其他分类 ...</span>
+}
+
+<span class="hljs-keyword">private</span> List&lt;String&gt; <span class="hljs-title function_">generateItems</span><span class="hljs-params">(String categoryPrefix, <span class="hljs-type">int</span> count)</span> {
+    List&lt;String&gt; items = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; i &lt;= count; i++) {
+        items.add(categoryPrefix + i);
+    }
+    <span class="hljs-keyword">return</span> items;
+}
+</code></pre>
+<h3 id="43-分类样式-categoryadapterjava">4.3. 分类样式 (<code>CategoryAdapter.java</code>)</h3>
+<p>应用最终颜色方案的核心逻辑位于 <code>onBindViewHolder</code> 方法中。</p>
+<pre><code class="language-java"><span class="hljs-meta">@Override</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onBindViewHolder</span><span class="hljs-params">(<span class="hljs-meta">@NonNull</span> ViewHolder holder, <span class="hljs-type">int</span> position)</span> {
+    <span class="hljs-type">String</span> <span class="hljs-variable">categoryName</span> <span class="hljs-operator">=</span> categories.get(position);
+    holder.categoryNameTextView.setText(categoryName);
+
+    <span class="hljs-comment">// --- 根据选中状态应用颜色样式 ---</span>
+    <span class="hljs-keyword">if</span> (position == selectedPosition) {
+        <span class="hljs-comment">// *** 选中项样式 ***</span>
+        <span class="hljs-comment">// 背景: 白色</span>
+        holder.itemView.setBackgroundColor(ContextCompat.getColor(context, R.color.white));
+        <span class="hljs-comment">// 文字: 黑色 (与白色背景形成对比)</span>
+        holder.categoryNameTextView.setTextColor(ContextCompat.getColor(context, R.color.black));
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-comment">// *** 未选中项样式 ***</span>
+        <span class="hljs-comment">// 背景: 橙色</span>
+        holder.itemView.setBackgroundColor(ContextCompat.getColor(context, R.color.category_highlight_orange));
+        <span class="hljs-comment">// 文字: 白色</span>
+        holder.categoryNameTextView.setTextColor(ContextCompat.getColor(context, R.color.white));
+    }
+    <span class="hljs-comment">// --- 颜色样式结束 ---</span>
+
+    <span class="hljs-comment">// 设置点击监听器...</span>
+    holder.itemView.setOnClickListener(v -&gt; {
+        <span class="hljs-comment">// ... (更新 selectedPosition 并通知更改的逻辑) ...</span>
+        <span class="hljs-keyword">if</span> (currentPosition != selectedPosition) {
+            <span class="hljs-type">int</span> <span class="hljs-variable">previousSelectedPosition</span> <span class="hljs-operator">=</span> selectedPosition;
+            selectedPosition = currentPosition;
+            listener.onCategoryClick(selectedPosition, categories.get(selectedPosition));
+            notifyItemChanged(previousSelectedPosition); <span class="hljs-comment">// 更新旧项样式</span>
+            notifyItemChanged(selectedPosition);     <span class="hljs-comment">// 更新新项样式</span>
+        }
+    });
+}
+</code></pre>
+<h3 id="44-项目列表分隔线-mainactivityjava">4.4. 项目列表分隔线 (<code>MainActivity.java</code>)</h3>
+<p>在 <code>onCreate</code> 方法中配置并添加 <code>DividerItemDecoration</code>。</p>
+<pre><code class="language-java"><span class="hljs-comment">// 在 onCreate 方法中，为 recyclerViewItems 设置 Adapter 之后</span>
+<span class="hljs-type">LinearLayoutManager</span> <span class="hljs-variable">itemsLayoutManager</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinearLayoutManager</span>(<span class="hljs-built_in">this</span>);
+recyclerViewItems.setLayoutManager(itemsLayoutManager);
+recyclerViewItems.setAdapter(itemAdapter);
+
+<span class="hljs-type">DividerItemDecoration</span> <span class="hljs-variable">dividerItemDecoration</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DividerItemDecoration</span>(
+        recyclerViewItems.getContext(),
+        itemsLayoutManager.getOrientation() <span class="hljs-comment">// 使用布局管理器的方向 (VERTICAL)</span>
+);
+
+<span class="hljs-comment">// 可选: 设置自定义的 Drawable</span>
+<span class="hljs-type">Drawable</span> <span class="hljs-variable">dividerDrawable</span> <span class="hljs-operator">=</span> ContextCompat.getDrawable(<span class="hljs-built_in">this</span>, R.drawable.divider_line);
+<span class="hljs-keyword">if</span> (dividerDrawable != <span class="hljs-literal">null</span>) {
+    dividerItemDecoration.setDrawable(dividerDrawable);
+}
+
+<span class="hljs-comment">// 将装饰器添加到 RecyclerView</span>
+recyclerViewItems.addItemDecoration(dividerItemDecoration);
+</code></pre>
+<h3 id="45-项目高度-list_item_foodxml">4.5. 项目高度 (<code>list_item_food.xml</code>)</h3>
+<p>增加的内边距（padding）使每个项目更高。</p>
+<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">TextView</span> <span class="hljs-attr">xmlns:android</span>=<span class="hljs-string">&quot;http://schemas.android.com/apk/res/android&quot;</span>
+    <span class="hljs-attr">android:id</span>=<span class="hljs-string">&quot;@+id/textViewItemName&quot;</span>
+    <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">&quot;match_parent&quot;</span>
+    <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">&quot;wrap_content&quot;</span>
+    <span class="hljs-attr">android:paddingStart</span>=<span class="hljs-string">&quot;16dp&quot;</span>
+    <span class="hljs-attr">android:paddingEnd</span>=<span class="hljs-string">&quot;16dp&quot;</span>
+    <span class="hljs-attr">android:paddingTop</span>=<span class="hljs-string">&quot;30dp&quot;</span>  &lt;!<span class="hljs-attr">--</span> 增加的内边距 <span class="hljs-attr">--</span>&gt;</span>
+    android:paddingBottom=&quot;30dp&quot; <span class="hljs-comment">&lt;!-- 增加的内边距 --&gt;</span>
+    android:textSize=&quot;18sp&quot;
+    android:textColor=&quot;@color/black&quot;
+    android:gravity=&quot;center_vertical&quot;
+    android:background=&quot;?android:attr/selectableItemBackground&quot; /&gt;
+</code></pre>
+<h3 id="46-交互逻辑">4.6. 交互逻辑</h3>
+<p><code>CategoryAdapter</code> 中声明的 <code>OnCategoryClickListener</code> 接口由 <code>MainActivity</code> 实现。当一个分类被点击时，Adapter 调用 <code>MainActivity</code> 中的 <code>onCategoryClick</code> 方法。<code>MainActivity</code> 随后从 <code>foodData</code> 获取对应的项目列表，并调用 <code>itemAdapter.updateData()</code> 来刷新右侧的 <code>RecyclerView</code>。分类项的颜色变化由 <code>CategoryAdapter</code> 内部通过调用 <code>notifyItemChanged</code> 来处理。</p>
+<h2 id="5-实验结果与截图">5. 实验结果与截图</h2>
+<p>应用程序成功实现了所要求的双栏 <code>RecyclerView</code> 布局和交互逻辑。</p>
+<ul>
+<li>分类在左侧显示，项目在右侧显示。</li>
+<li>点击分类能正确更新右侧的项目列表。</li>
+<li>分类列表应用了指定的颜色方案：选中项为白底黑字，未选中项为橙底白字。</li>
+<li>项目列表保持白色背景，并在项目之间显示了分隔线。</li>
+<li>通过调整内边距，项目具有了更大的垂直高度。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">主食选中</th>
+<th style="text-align:center">麻辣烫选中</th>
+<th style="text-align:center">清真菜选中</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="file:///d:\AndroidStudio\EE317_Menu2\main_menu.png" alt="应用启动 - 主食选中"></td>
+<td style="text-align:center"><img src="file:///d:\AndroidStudio\EE317_Menu2\3_menu.png" alt="麻辣烫选中"></td>
+<td style="text-align:center"><img src="file:///d:\AndroidStudio\EE317_Menu2\4_menu.png" alt="清真菜选中"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-结论">6. 结论</h2>
+<p>本次实验成功运用 <code>RecyclerView</code> 构建了一个联动的、符合要求的双栏菜单/购物应用界面。关键技术点包括：</p>
+<ul>
+<li>在单个 Activity 布局中使用多个 <code>RecyclerView</code> 实例。</li>
+<li>实现自定义适配器 (<code>CategoryAdapter</code>, <code>ItemAdapter</code>) 来管理数据和视图绑定。</li>
+<li>在 Adapter 内部处理并视觉化反映项目选中状态（背景/文字颜色变化）。</li>
+<li>使用回调接口 (<code>OnCategoryClickListener</code>) 实现 Adapter 与 Activity 之间的通信。</li>
+<li>根据一个 <code>RecyclerView</code> 中的选择动态更新另一个 <code>RecyclerView</code> 的内容。</li>
+<li>通过 XML 布局自定义项目外观（内边距/高度）。</li>
+<li>使用 <code>DividerItemDecoration</code> 和自定义 Drawable 添加视觉分隔线。</li>
+</ul>
+<p>项目成功满足了所有指定需求，包括最终的颜色方案调整。</p>
+<h2 id="7-源代码参考">7. 源代码参考</h2>
+<p><code>MainActivity.java</code>, <code>CategoryAdapter.java</code>, <code>ItemAdapter.java</code> 的完整源代码，以及所有相关的 XML 布局和资源文件，均包含在项目目录中。</p>
+
+            
+            
+        </body>
+        </html>
