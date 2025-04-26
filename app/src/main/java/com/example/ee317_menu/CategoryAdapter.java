@@ -1,7 +1,6 @@
-package com.example.ee317_menu;
+package com.yourcompany.shoppingappdemo; // Replace with your package name
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +15,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     private final List<String> categories;
     private final LayoutInflater inflater;
     private final Context context;
-    private int selectedPosition = 0; // Default selection is the first item
-    private OnCategoryClickListener listener;
+    private int selectedPosition = 0; // Default selection is the first item ("主食")
+    private final OnCategoryClickListener listener;
 
     // Interface for click events
     public interface OnCategoryClickListener {
@@ -43,33 +42,38 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         String categoryName = categories.get(position);
         holder.categoryNameTextView.setText(categoryName);
 
-        // Handle selection background
+        // Handle selection background and text color
         if (position == selectedPosition) {
             // Special case for "主食" (Main Course) - White background
             if (categoryName.equals(context.getString(R.string.category_main_course))) {
                 holder.itemView.setBackgroundColor(ContextCompat.getColor(context, R.color.white));
-                holder.categoryNameTextView.setTextColor(ContextCompat.getColor(context, R.color.toolbar_background)); // Darker text for contrast on white
+                // Use a contrasting text color for white background (e.g., dark blue or black)
+                holder.categoryNameTextView.setTextColor(ContextCompat.getColor(context, R.color.toolbar_background));
             } else {
                 // Orange background for other selected categories
                 holder.itemView.setBackgroundColor(ContextCompat.getColor(context, R.color.category_highlight_orange));
                 holder.categoryNameTextView.setTextColor(ContextCompat.getColor(context, R.color.white)); // White text on orange
             }
         } else {
-            // Default background for non-selected items
+            // Default background for non-selected items (e.g., light grey)
             holder.itemView.setBackgroundColor(ContextCompat.getColor(context, R.color.category_default_background));
             holder.categoryNameTextView.setTextColor(ContextCompat.getColor(context, R.color.black)); // Default text color
         }
 
         // Set click listener
         holder.itemView.setOnClickListener(v -> {
-            if (listener != null) {
-                int previousSelectedPosition = selectedPosition;
-                selectedPosition = holder.getAdapterPosition();
-                listener.onCategoryClick(selectedPosition, categoryName);
+            // Check if listener is set and if the clicked position is different from current selection
+            if (listener != null && holder.getAdapterPosition() != RecyclerView.NO_POSITION) {
+                int clickedPosition = holder.getAdapterPosition();
+                if (clickedPosition != selectedPosition) { // Only update if a different item is clicked
+                    int previousSelectedPosition = selectedPosition;
+                    selectedPosition = clickedPosition;
+                    listener.onCategoryClick(selectedPosition, categories.get(selectedPosition));
 
-                // Notify adapter to redraw the previous and current selected items
-                notifyItemChanged(previousSelectedPosition);
-                notifyItemChanged(selectedPosition);
+                    // Notify adapter to redraw the previous and current selected items
+                    notifyItemChanged(previousSelectedPosition);
+                    notifyItemChanged(selectedPosition);
+                }
             }
         });
     }
@@ -88,11 +92,13 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         }
     }
 
-    // Method to programmatically set selection (e.g., for initial state)
+    // Optional: Method to programmatically set selection if needed externally
     public void setSelectedPosition(int position) {
-        int previousSelectedPosition = selectedPosition;
-        selectedPosition = position;
-        notifyItemChanged(previousSelectedPosition);
-        notifyItemChanged(selectedPosition);
+        if (position >= 0 && position < categories.size()) {
+            int previousSelectedPosition = selectedPosition;
+            selectedPosition = position;
+            notifyItemChanged(previousSelectedPosition);
+            notifyItemChanged(selectedPosition);
+        }
     }
 }

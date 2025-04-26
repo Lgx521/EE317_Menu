@@ -1,4 +1,4 @@
-package com.example.ee317_menu;
+package com.yourcompany.shoppingappdemo; // Replace with your package name
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
-    private List<String> items;
+    private final List<String> items;
     private final LayoutInflater inflater;
 
     public ItemAdapter(Context context, List<String> items) {
@@ -23,6 +23,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        // Ensure you are using the layout designed for taller items
         View view = inflater.inflate(R.layout.list_item_food, parent, false);
         return new ViewHolder(view);
     }
@@ -41,7 +42,9 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
     // Method to update the list of items when a new category is selected
     public void updateData(List<String> newItems) {
         items.clear();
-        items.addAll(newItems);
+        if (newItems != null) { // Add null check for safety
+            items.addAll(newItems);
+        }
         notifyDataSetChanged(); // Notify adapter that the data set has changed
     }
 
